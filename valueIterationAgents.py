@@ -71,7 +71,6 @@ class ValueIterationAgent(ValueEstimationAgent):
           for state in states:
             possibleActions = self.mdp.getPossibleActions(state)
             if len(possibleActions) == 0:
-              # self.values[state] = oldValuesCounter[state]*self.discount #no possible moves --> discount previous value
               continue
             actionValues = []
             for action in possibleActions:
@@ -157,6 +156,25 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
+        states = self.mdp.getStates()
+        stateCounter = 0
+        index = self.iterations
+        while index > 0:
+          state = states[stateCounter]
+          possibleActions = self.mdp.getPossibleActions(state)
+          if len(possibleActions) == 0:
+            print ""
+          else:
+            actionValues = []
+            for action in possibleActions:
+              transitionStates = self.mdp.getTransitionStatesAndProbs(state, action)
+              transitions = [t[1]*(self.mdp.getReward(state, action, t[0]) + (self.discount * self.values[t[0]])) for t in transitionStates]
+              actionValues.append(sum(transitions))
+            self.values[state] = max(actionValues)
+          index -= 1
+          stateCounter += 1
+          if stateCounter == len(states):
+            stateCounter = 0
 
 class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
     """
