@@ -162,9 +162,7 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
         while index > 0:
           state = states[stateCounter]
           possibleActions = self.mdp.getPossibleActions(state)
-          if len(possibleActions) == 0:
-            print ""
-          else:
+          if len(possibleActions) != 0:
             actionValues = []
             for action in possibleActions:
               transitionStates = self.mdp.getTransitionStatesAndProbs(state, action)
@@ -195,4 +193,36 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
+        #generate predecessors
+        statePredecessors = {}
+        states = self.mdp.getStates()
+        for state in states:
+          statePredecessors[state] = [] #initialize values in predecessors dictionary to empty list 
+        for state in states:
+          actions = self.mdp.getPossibleActions(state)
+          for action in actions:
+            transitionStates = self.mdp.getTransitionStatesAndProbs(state, action)
+            for nextState, prob in transitionStates:
+              #don't know if this is necessary
+              #getTransitions...() might only return transitions with nonzero probabilities initially
+              if prob > 0:
+                if state not in statePredecessors[nextState]:
+                  statePredecessors[nextState].append(state)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
