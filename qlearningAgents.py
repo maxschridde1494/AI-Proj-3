@@ -62,11 +62,11 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         actions = self.getLegalActions(state)
-        if not actions:
+        if len(actions) == 0:
           return 0.0
         qVals = []
         for action in actions:
-          qVals.append(self.getQValue(state, action)
+          qVals.append(self.getQValue(state, action))
         return max(qVals)
 
     def computeActionFromQValues(self, state):
@@ -76,7 +76,18 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        actions = self.getLegalActions(state)
+        if len(actions) == 0:
+          return None
+        maxQ, maxAction = 0, ""
+        for action in actions:
+          q = self.getQValue(state, action)
+          if q >= maxQ:
+            if q == maxQ:
+              maxAction = random.choice((maxAction, action))
+            else:
+              maxQ, maxAction = q, action
+        return maxAction
 
     def getAction(self, state):
         """
@@ -107,6 +118,7 @@ class QLearningAgent(ReinforcementAgent):
           it will be called on your behalf
         """
         "*** YOUR CODE HERE ***"
+        print "previous q: " + str(self.qvalues[(state, action)])
         actions = self.getLegalActions(nextState)
         nextQValues = []
         for action in actions:
@@ -114,8 +126,12 @@ class QLearningAgent(ReinforcementAgent):
         if not nextQValues:
           nextQValues.append(0)
         sample = reward + self.discount*max(nextQValues)
+        # print "sample: " + str(sample)
         updatedValue = (1-self.alpha)*self.qvalues[(state, action)] + self.alpha*sample
+        # print "updated q: " + str(updatedValue)
         self.qvalues[(state, action)] =  updatedValue
+        print "dic value: " + str(self.qvalues[(state, action)])
+        print "q-state: " + str((state, action))
 
     def getPolicy(self, state):
         return self.computeActionFromQValues(state)
