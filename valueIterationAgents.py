@@ -58,8 +58,6 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.iterations = iterations
         self.values = util.Counter() # A Counter is a dict with default 0
         self.runValueIteration()
-        print self.values
-        print "FINISHED"
 
     def runValueIteration(self):
         # Write value iteration code here
@@ -209,20 +207,32 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
                 if state not in statePredecessors[nextState]:
                   statePredecessors[nextState].append(state)
         
+        pQueue = util.PriorityQueue()
+        #generate diffs
+        for state in states:
+          if not self.mdp.isTerminal(state):
+            possibleActions = self.mdp.getPossibleActions(state)
+            qValues = []
+            for action in possibleActions:
+              qValues.append(self.computeQValueFromValues(state, action))
+            diff = abs(self.values[state] - max(qValues))
+            pQueue.push(state, -diff)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for _ in range(self.iterations):
+          if pQueue.isEmpty():
+            return
+          else:
+            curr_state = pQueue.pop()
+            if not self.mdp.isTerminal(curr_state):
+              pActions = self.mdp.getPossibleActions(curr_state)
+              q = []
+              for action in pActions:
+                q.append(self.getQValue(curr_state, action))
+              self.values[curr_state] = max(q)
+              for predecessor in statePredecessors[curr_state]:
+                predQ = []
+                for a in self.mdp.getPossibleActions(predecessor):
+                  predQ.append(self.getQValue(predecessor, a))
+                diff = abs(self.values[predecessor] - max(predQ))
+                if diff > self.theta:
+                  pQueue.update(predecessor, -diff)
