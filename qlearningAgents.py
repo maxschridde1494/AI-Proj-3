@@ -198,8 +198,8 @@ class ApproximateQAgent(PacmanQAgent):
         qValueSum = 0
         features = self.featExtractor.getFeatures(state, action).iteritems()
         # print features
-        for feat, val in features:
-          qValueSum += val*self.weights[feat]
+        for feat in features:
+          qValueSum += feat[1]*self.weights[feat]
         return qValueSum
 
     def update(self, state, action, nextState, reward):
@@ -209,16 +209,14 @@ class ApproximateQAgent(PacmanQAgent):
         "*** YOUR CODE HERE ***"
         actions = self.getLegalActions(nextState)
         nextQValues = []
-        oldWeights = self.getWeights().copy()
-        for a in actions:
-          nextQValues.append(self.qvalues[(nextState, a)])
+        for nextAction in actions:
+          nextQValues.append(self.getQValue(nextState, nextAction))
         if not nextQValues:
           nextQValues.append(0)
         difference = reward + self.discount*max(nextQValues) - self.getQValue(state, action)
         features = self.featExtractor.getFeatures(state, action).iteritems()
-        for feat, val in features:
-          self.weights[feat] = oldWeights[feat] + self.alpha*difference*val
-        self.qvalues[(state, action)] = self.getQValue(state, action)
+        for feat in features:
+          self.weights[feat] = self.weights[feat] + self.alpha*difference*feat[1]
 
     def final(self, state):
         "Called at the end of each game."
