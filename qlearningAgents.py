@@ -75,11 +75,21 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        action_values = [(sa_tup[1], value) for sa_tup, value in self.qvalues.iteritems() if sa_tup[0] == state]
-        if len(self.getLegalActions(state)) == 0 or len(action_values) == 0:
-            return None
-        action_value = max(action_values, key=lambda x: x[1])
-        return action_value[0]
+        actions = self.getLegalActions(state)
+        if not actions:
+         return None
+        arr = []
+        for action in actions:
+          q = self.getQValue(state, action)
+          arr.append((q, action))
+        maxQ, maxAction = arr[0][0], arr[0][1]
+        for tup in arr:
+          if tup[0] >= maxQ:
+            if tup[0] == maxQ:
+              maxAction = random.choice((maxAction, tup[1]))
+            else:
+              maxQ, maxAction = tup[0], tup[1]
+        return maxAction
 
     def getAction(self, state):
         """
@@ -95,8 +105,8 @@ class QLearningAgent(ReinforcementAgent):
         "*** YOUR CODE HERE ***"
         # Pick Action
         legalActions = self.getLegalActions(state)
-        action = None
-        
+        if len(legalActions) == 0:
+          return None        
         if util.flipCoin(self.epsilon):
           action = random.choice(legalActions)
         else:
