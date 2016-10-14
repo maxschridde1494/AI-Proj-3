@@ -293,14 +293,7 @@ Q-Values at iteration 7 for action 'exit' are correct.   Student/correct solutio
             3.4390
 """
 
-Q-Values at iteration 7 for action 'south' are NOT correct.   Student solution:
-	q_values_k_7_action_south: """
-           illegal
-            0.0000
-           illegal
-"""
-
-   Correct solution:
+Q-Values at iteration 7 for action 'south' are correct.   Student/correct solution:
 	q_values_k_7_action_south: """
            illegal
             0.1720
@@ -312,5 +305,136 @@ Q-Values at iteration 7 for action 'west' are correct.   Student/correct solutio
            illegal
             0.0000
            illegal
+"""
+
+==================== Iteration 8 ====================
+Agent observed the transition (startState = (0, 0), action = exit, endState = TERMINAL_STATE, reward = 10.000000)
+
+
+Q-Values at iteration 8 for action 'north' are correct.   Student/correct solution:
+	q_values_k_8_action_north: """
+           illegal
+            0.0000
+           illegal
+"""
+
+Q-Values at iteration 8 for action 'east' are correct.   Student/correct solution:
+	q_values_k_8_action_east: """
+           illegal
+            0.0000
+           illegal
+"""
+
+Q-Values at iteration 8 for action 'exit' are correct.   Student/correct solution:
+	q_values_k_8_action_exit: """
+           -1.0000
+           illegal
+            4.0951
+"""
+
+Q-Values at iteration 8 for action 'south' are correct.   Student/correct solution:
+	q_values_k_8_action_south: """
+           illegal
+            0.1720
+           illegal
+"""
+
+Q-Values at iteration 8 for action 'west' are correct.   Student/correct solution:
+	q_values_k_8_action_west: """
+           illegal
+            0.0000
+           illegal
+"""
+
+==================== Iteration 9 ====================
+Agent observed the transition (startState = (0, 0), action = exit, endState = TERMINAL_STATE, reward = 10.000000)
+
+
+Q-Values at iteration 9 for action 'north' are correct.   Student/correct solution:
+	q_values_k_9_action_north: """
+           illegal
+            0.0000
+           illegal
+"""
+
+Q-Values at iteration 9 for action 'east' are correct.   Student/correct solution:
+	q_values_k_9_action_east: """
+           illegal
+            0.0000
+           illegal
+"""
+
+Q-Values at iteration 9 for action 'exit' are correct.   Student/correct solution:
+	q_values_k_9_action_exit: """
+           -1.0000
+           illegal
+            4.6856
+"""
+
+Q-Values at iteration 9 for action 'south' are correct.   Student/correct solution:
+	q_values_k_9_action_south: """
+           illegal
+            0.1720
+           illegal
+"""
+
+Q-Values at iteration 9 for action 'west' are correct.   Student/correct solution:
+	q_values_k_9_action_west: """
+           illegal
+            0.0000
+           illegal
+"""
+
+==================== Iteration 100 ====================
+Agent observed the transition (startState = (0, 2), action = exit, endState = TERMINAL_STATE, reward = -10.000000)
+
+
+Q-Values at iteration 100 for action 'north' are correct.   Student/correct solution:
+	q_values_k_100_action_north: """
+           illegal
+           -0.4534
+           illegal
+"""
+
+Q-Values at iteration 100 for action 'east' are correct.   Student/correct solution:
+	q_values_k_100_action_east: """
+           illegal
+            0.4063
+           illegal
+"""
+
+Q-Values at iteration 100 for action 'exit' are correct.   Student/correct solution:
+	q_values_k_100_action_exit: """
+           -9.4767
+           illegal
+            9.8175
+"""
+
+Q-Values at iteration 100 for action 'south' are correct.   Student/correct solution:
+	q_values_k_100_action_south: """
+           illegal
+            2.1267
+           illegal
+"""
+
+Q-Values at iteration 100 for action 'west' are correct.   Student/correct solution:
+	q_values_k_100_action_west: """
+           illegal
+            0.3919
+           illegal
+"""
+
+Policy is NOT correct.   Student solution:
+	policy: """
+                  
+        south     
+        exit
+"""
+
+   Correct solution:
+	policy: """
+        exit      
+        south     
+        exit
 """
 

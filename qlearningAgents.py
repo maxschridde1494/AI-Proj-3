@@ -77,7 +77,7 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         actions = self.getLegalActions(state)
-        if len(actions) == 0:
+        if not actions:
           return None
         maxQ, maxAction = 0, ""
         for action in actions:
@@ -100,12 +100,14 @@ class QLearningAgent(ReinforcementAgent):
           HINT: You might want to use util.flipCoin(prob)
           HINT: To pick randomly from a list, use random.choice(list)
         """
+        "*** YOUR CODE HERE ***"
         # Pick Action
         legalActions = self.getLegalActions(state)
         action = None
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
-
+        if util.flipCoin(self.epsilon):
+          action = random.choice(legalActions)
+        else:
+          action = self.computeActionFromQValues(state)
         return action
 
     def update(self, state, action, nextState, reward):
@@ -118,20 +120,20 @@ class QLearningAgent(ReinforcementAgent):
           it will be called on your behalf
         """
         "*** YOUR CODE HERE ***"
-        print "previous q: " + str(self.qvalues[(state, action)])
         actions = self.getLegalActions(nextState)
         nextQValues = []
-        for action in actions:
-          nextQValues.append(self.qvalues[(nextState, action)])
+        for a in actions:
+          nextQValues.append(self.qvalues[(nextState, a)])
         if not nextQValues:
           nextQValues.append(0)
         sample = reward + self.discount*max(nextQValues)
-        # print "sample: " + str(sample)
+        # print sample
         updatedValue = (1-self.alpha)*self.qvalues[(state, action)] + self.alpha*sample
-        # print "updated q: " + str(updatedValue)
+        # print updatedValue
         self.qvalues[(state, action)] =  updatedValue
-        print "dic value: " + str(self.qvalues[(state, action)])
-        print "q-state: " + str((state, action))
+        # print "q for " + str(state) + "," + str(action) + ": "  + str(self.getQValue(state, action))
+        # print "dic value: " + str(self.qvalues[(state, action)])
+        # print "q-state: " + str((state, action))
 
     def getPolicy(self, state):
         return self.computeActionFromQValues(state)

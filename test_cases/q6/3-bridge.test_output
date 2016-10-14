@@ -589,18 +589,7 @@ Q-Values at iteration 9 for action 'west' are correct.   Student/correct solutio
 Agent observed the transition (startState = (0, 4), action = exit, endState = TERMINAL_STATE, reward = -100.000000)
 
 
-Q-Values at iteration 500 for action 'north' are NOT correct.   Student solution:
-	q_values_k_500_action_north: """
-        __________      illegal   __________
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-        __________      illegal   __________
-"""
-
-   Correct solution:
+Q-Values at iteration 500 for action 'north' are correct.   Student/correct solution:
 	q_values_k_500_action_north: """
         __________      illegal   __________
            illegal      -5.8648      illegal
@@ -611,18 +600,7 @@ Q-Values at iteration 500 for action 'north' are NOT correct.   Student solution
         __________      illegal   __________
 """
 
-Q-Values at iteration 500 for action 'east' are NOT correct.   Student solution:
-	q_values_k_500_action_east: """
-        __________      illegal   __________
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-        __________      illegal   __________
-"""
-
-   Correct solution:
+Q-Values at iteration 500 for action 'east' are correct.   Student/correct solution:
 	q_values_k_500_action_east: """
         __________      illegal   __________
            illegal     -17.0676      illegal
@@ -644,18 +622,7 @@ Q-Values at iteration 500 for action 'exit' are correct.   Student/correct solut
         __________       0.9576   __________
 """
 
-Q-Values at iteration 500 for action 'south' are NOT correct.   Student solution:
-	q_values_k_500_action_south: """
-        __________      illegal   __________
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-        __________      illegal   __________
-"""
-
-   Correct solution:
+Q-Values at iteration 500 for action 'south' are correct.   Student/correct solution:
 	q_values_k_500_action_south: """
         __________      illegal   __________
            illegal      -6.8377      illegal
@@ -666,18 +633,7 @@ Q-Values at iteration 500 for action 'south' are NOT correct.   Student solution
         __________      illegal   __________
 """
 
-Q-Values at iteration 500 for action 'west' are NOT correct.   Student solution:
-	q_values_k_500_action_west: """
-        __________      illegal   __________
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-           illegal       0.0000      illegal
-        __________      illegal   __________
-"""
-
-   Correct solution:
+Q-Values at iteration 500 for action 'west' are correct.   Student/correct solution:
 	q_values_k_500_action_west: """
         __________      illegal   __________
            illegal     -27.0626      illegal
@@ -688,36 +644,14 @@ Q-Values at iteration 500 for action 'west' are NOT correct.   Student solution:
         __________      illegal   __________
 """
 
-Values are NOT correct.   Student solution:
-	values: """
-        __________       9.3539   __________
-          -96.5663       0.0000     -96.9097
-          -97.7472       0.0000     -94.1850
-          -89.0581       0.0000     -96.9097
-          -97.2187       0.0000     -87.8423
-          -92.8210       0.0000     -97.2187
-        __________       0.9576   __________
-"""
-
-   Correct solution:
-	values: """
-        __________       9.3539   __________
-          -96.5663      -5.8648     -96.9097
-          -97.7472      -0.7995     -94.1850
-          -89.0581      -0.1671     -96.9097
-          -97.2187      -1.2642     -87.8423
-          -92.8210      -0.5871     -97.2187
-        __________       0.9576   __________
-"""
-
 Policy is NOT correct.   Student solution:
 	policy: """
         __________   exit         __________
-                     east                   
-                     west                   
-                     north                  
-                     west                   
-                     east                   
+                                            
+                                            
+                                            
+                                            
+                                            
         __________   exit         __________
 """
 

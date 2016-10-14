@@ -440,16 +440,7 @@ Q-Values at iteration 8 for action 'west' are correct.   Student/correct solutio
 Agent observed the transition (startState = (1, 1), action = north, endState = (0, 1), reward = 0.000000)
 
 
-Q-Values at iteration 9 for action 'north' are NOT correct.   Student solution:
-	q_values_k_9_action_north: """
-           illegal       0.0000      illegal       0.0000       0.0000
-           illegal       0.0000   __________       0.0000       0.0000
-           illegal       0.0000      illegal       0.0000       0.0000
-           illegal       0.0000   __________   __________       0.0000
-           illegal       0.0000       0.0000       0.0000       0.0000
-"""
-
-   Correct solution:
+Q-Values at iteration 9 for action 'north' are correct.   Student/correct solution:
 	q_values_k_9_action_north: """
            illegal       0.0000      illegal       0.0000       0.0000
            illegal       0.0000   __________       0.0000       0.0000
@@ -492,5 +483,72 @@ Q-Values at iteration 9 for action 'west' are correct.   Student/correct solutio
            illegal       0.0000      illegal       0.0000       0.0000
            illegal       0.0000   __________   __________       0.0000
            illegal       0.0000       0.0000       0.0000       0.0000
+"""
+
+==================== Iteration 3000 ====================
+Agent observed the transition (startState = (2, 4), action = exit, endState = TERMINAL_STATE, reward = 10.000000)
+
+
+Q-Values at iteration 3000 for action 'north' are correct.   Student/correct solution:
+	q_values_k_3000_action_north: """
+           illegal       4.3205      illegal       6.1517       3.8095
+           illegal       4.4238   __________       5.2284       3.5129
+           illegal       1.0694      illegal       3.6867       2.0418
+           illegal       0.3423   __________   __________       1.0655
+           illegal       0.0073       0.0079       0.0484       0.3768
+"""
+
+Q-Values at iteration 3000 for action 'east' are correct.   Student/correct solution:
+	q_values_k_3000_action_east: """
+           illegal       8.0584      illegal       3.7245       3.3947
+           illegal       2.0499   __________       3.2373       2.1742
+           illegal       0.8687      illegal       1.7398       1.2671
+           illegal       0.2927   __________   __________       0.6669
+           illegal       0.0239       0.0097       0.1611       0.2051
+"""
+
+Q-Values at iteration 3000 for action 'exit' are correct.   Student/correct solution:
+	q_values_k_3000_action_exit: """
+          -10.0000      illegal      10.0000      illegal      illegal
+          -10.0000      illegal   __________      illegal      illegal
+          -10.0000      illegal       1.0000      illegal      illegal
+          -10.0000      illegal   __________   __________      illegal
+           -9.9999      illegal      illegal      illegal      illegal
+"""
+
+Q-Values at iteration 3000 for action 'south' are correct.   Student/correct solution:
+	q_values_k_3000_action_south: """
+           illegal      -0.3521      illegal       3.6948       2.9139
+           illegal      -0.5605   __________       2.1346       1.5674
+           illegal       0.2093      illegal       1.5389       0.5521
+           illegal      -0.5505   __________   __________       0.1006
+           illegal      -1.8501       0.0060       0.0514       0.1223
+"""
+
+Q-Values at iteration 3000 for action 'west' are correct.   Student/correct solution:
+	q_values_k_3000_action_west: """
+           illegal      -6.2001      illegal       7.5146       4.9014
+           illegal      -5.4013   __________       4.0484       3.4126
+           illegal      -8.0399      illegal       0.9653       1.6081
+           illegal      -7.4767   __________   __________       0.3934
+           illegal      -6.3432       0.0179       0.0188       0.1028
+"""
+
+Policy is NOT correct.   Student solution:
+	policy: """
+                     east         exit         west         west      
+                     north        __________   north        north     
+                     north        exit         north        north     
+                     north        __________   __________   north     
+                     east         west         east         north
+"""
+
+   Correct solution:
+	policy: """
+        exit         east         exit         west         west      
+        exit         north        __________   north        north     
+        exit         north        exit         north        north     
+        exit         north        __________   __________   north     
+        exit         east         west         east         north
 """
 
