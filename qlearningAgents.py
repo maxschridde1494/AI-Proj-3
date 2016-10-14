@@ -41,9 +41,6 @@ class QLearningAgent(ReinforcementAgent):
     def __init__(self, **args):
         "You can initialize Q-values here..."
         ReinforcementAgent.__init__(self, **args)
-        "*** YOUR CODE HERE ***"
-        # self.qs = util.Counter()
-
         self.qvalues = util.Counter()
 
     def getQValue(self, state, action):
@@ -53,8 +50,6 @@ class QLearningAgent(ReinforcementAgent):
           or the Q node value otherwise
         """
         "*** YOUR CODE HERE ***"
-        # return self.qs[(state, action)] if (state, action) in self.qs else 0.0
-
         return self.qvalues[(state, action)]
 
     def computeValueFromQValues(self, state):
@@ -80,15 +75,9 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        # action_values = [(sa_tup[1], value) for sa_tup, value in self.qs.iteritems() if sa_tup[0] == state]
-        # if len(self.getLegalActions(state)) == 0 or len(action_values) == 0:
-        #     return None
-        # action_value = max(action_values, key=lambda x: x[1])
-        # return action_value[0]
-
         actions = self.getLegalActions(state)
         if not actions:
-          return None
+         return None
         arr = []
         for action in actions:
           q = self.getQValue(state, action)
@@ -123,6 +112,8 @@ class QLearningAgent(ReinforcementAgent):
         #     return random.choice(legalActions)
         # return self.computeActionFromQValues(state)
 
+        if len(legalActions) == 0:
+          return None        
         if util.flipCoin(self.epsilon):
           action = random.choice(legalActions)
         else:
@@ -139,9 +130,7 @@ class QLearningAgent(ReinforcementAgent):
           it will be called on your behalf
         """
         "*** YOUR CODE HERE ***"
-        # old = (1 - self.alpha) * self.qs[(state, action)] if (state, action) in self.qs else 0.0
-        # self.qs[(state, action)] = old + self.alpha * (reward + self.discount * (self.computeValueFromQValues(nextState)))
-
+        
         actions = self.getLegalActions(nextState)
         nextQValues = []
         for a in actions:
