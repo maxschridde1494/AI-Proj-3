@@ -79,14 +79,17 @@ class QLearningAgent(ReinforcementAgent):
         actions = self.getLegalActions(state)
         if not actions:
           return None
-        maxQ, maxAction = 0, ""
+        arr = []
         for action in actions:
           q = self.getQValue(state, action)
-          if q >= maxQ:
-            if q == maxQ:
-              maxAction = random.choice((maxAction, action))
+          arr.append((q, action))
+        maxQ, maxAction = arr[0][0], arr[0][1]
+        for tup in arr:
+          if tup[0] >= maxQ:
+            if tup[0] == maxQ:
+              maxAction = random.choice((maxAction, tup[1]))
             else:
-              maxQ, maxAction = q, action
+              maxQ, maxAction = tup[0], tup[1]
         return maxAction
 
     def getAction(self, state):
@@ -127,13 +130,8 @@ class QLearningAgent(ReinforcementAgent):
         if not nextQValues:
           nextQValues.append(0)
         sample = reward + self.discount*max(nextQValues)
-        # print sample
         updatedValue = (1-self.alpha)*self.qvalues[(state, action)] + self.alpha*sample
-        # print updatedValue
         self.qvalues[(state, action)] =  updatedValue
-        # print "q for " + str(state) + "," + str(action) + ": "  + str(self.getQValue(state, action))
-        # print "dic value: " + str(self.qvalues[(state, action)])
-        # print "q-state: " + str((state, action))
 
     def getPolicy(self, state):
         return self.computeActionFromQValues(state)
