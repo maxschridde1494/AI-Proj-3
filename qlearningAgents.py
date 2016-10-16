@@ -106,12 +106,6 @@ class QLearningAgent(ReinforcementAgent):
         # Pick Action
         legalActions = self.getLegalActions(state)
         action = None
-        # if len(legalActions) == 0:
-        #     return None
-        # if util.flipCoin(self.epsilon):
-        #     return random.choice(legalActions)
-        # return self.computeActionFromQValues(state)
-
         if len(legalActions) == 0:
           return None        
         if util.flipCoin(self.epsilon):
@@ -202,11 +196,6 @@ class ApproximateQAgent(PacmanQAgent):
           where * is the dotProduct operator
         """
         "*** YOUR CODE HERE ***"
-        # total = 0
-        # for feature in self.featExtractor.getFeatures(state, action).iteritems():
-        #     total += self.weights[feature] * feature[1]
-        # return total
-
         qValueSum = 0
         features = self.featExtractor.getFeatures(state, action).iteritems()
         # print features
@@ -219,17 +208,6 @@ class ApproximateQAgent(PacmanQAgent):
            Should update your weights based on transition
         """
         "*** YOUR CODE HERE ***"
-
-        # nextqs = []
-        # for nextAction in self.getLegalActions(nextState):
-        #     nextqs.append(self.getQValue(nextState, nextAction))
-        # if len(nextqs) == 0:
-        #     nextqs = [0]
-        # maxNextqs = max(nextqs)
-        # difference = (reward + (self.discount * maxNextqs)) - self.getQValue(state, action)
-        # for feature in self.featExtractor.getFeatures(state, action).iteritems():
-        #     self.weights[feature] = self.weights[feature] + ((self.alpha * difference) * feature[1])
-
         actions = self.getLegalActions(nextState)
         nextQValues = []
         for nextAction in actions:
